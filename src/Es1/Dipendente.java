@@ -2,9 +2,9 @@ package Es1;
 
 public class Dipendente {
     public static double stipendioBase = 1000;
-    public  int matricola ;
-    private  double stipendio;
-    private  double importoOrarioStraordinario;
+    public int matricola;
+    private double stipendio;
+    private double importoOrarioStraordinario;
 
 
     public static enum Livello {
@@ -20,7 +20,7 @@ public class Dipendente {
         VENDITE,
     }
 
-    private  Livello livello;
+    private Livello livello;
     private Dipartimento dipartimento;
     //costruttore
 
@@ -38,15 +38,41 @@ public class Dipendente {
         return
                 "Dipendente{" + "Matricola " + matricola + " Dipartimento " + dipartimento +
                         " livello= " + livello +
-                        ", dipartimento= " + dipartimento  + " importo orario straordinario " +
-                        importoOrarioStraordinario + " stipendio " + stipendio+
-        '}';
+                        ", dipartimento= " + dipartimento + " importo orario straordinario " +
+                        importoOrarioStraordinario + " stipendio " + stipendio +
+                        '}';
     }
 
-//    public String promuoviDipendente() {
-//
-//        switch (Livello) {};
-//    };
+    public void promuoviDipendente() {
+
+        switch (this.livello) {
+            case OPERAIO -> {
+
+                this.livello = Livello.IMPIEGATO;
+
+                this.stipendio = (stipendioBase) * 1.2;
+            }
+            case IMPIEGATO -> {
+                this.livello = Livello.QUADRO;
+                this.stipendio = (stipendioBase) * 1.5;
+
+            }
+            case QUADRO -> {
+                this.livello = Livello.QUADRO;
+                this.stipendio = (stipendioBase) * 2;
+            }
+
+            case DIRIGENTE -> {
+                this.livello = Livello.DIRIGENTE;
+
+
+                System.out.println(" Errore");
+            }
+        }
+
+    }
+
+    ;;
 
     public Dipendente(int matricola, Dipartimento dipartimento, double stipendioBase,
                       double stipendio,
